@@ -1,0 +1,14 @@
+id: 4b56847b-68f2-4cf8-9bcf-4876990d2a51
+pipeline_type: WORKSPACE
+name: Adventure_sale_rule_pipeline
+libraries:
+  - glob:
+      include: ../../src/Databricks_project/Dlt_pipeline_root_folder/NewPipeline 2025-10-10 12:21-(1)/Adventure_sales_rule_dlt_pip_notebook
+schema: gold
+continuous: false
+development: false
+photon: true
+channel: CURRENT
+catalog: dev_catalog
+serverless: true
+root_path: ../../src/Databricks_project/Dlt_pipeline_root_folder/NewPipeline 2025-10-10 12:21-(1)
