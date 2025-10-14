@@ -1,0 +1,26 @@
+resources:
+  jobs:
+    Dynamic_file_ingestion_job:
+      name: Dynamic_file_ingestion_job
+      tasks:
+        - task_key: File_lookup_task
+          sql_task:
+            file:
+              path: ../../src/Databricks_project/Notebooks/Dynamic_pipeline_for_multiple_file_ingestion/File_Lookup.sql
+              source: WORKSPACE
+            warehouse_id: 3828c63a5c29d8e2
+        - task_key: File_ingestion_task
+          depends_on:
+            - task_key: File_lookup_task
+          for_each_task:
+            inputs: "{{tasks.File_lookup_task.output.rows}}"
+            task:
+              task_key: File_ingestion_task_iteration
+              notebook_task:
+                notebook_path: ../..src/Databricks_project/Notebooks/Dynamic_pipeline_for_multiple_file_ingestion/Dynamic_file_ingestion_notebook.ipynb
+                base_parameters:
+                  file_name: "{{input.file}}"
+                source: WORKSPACE
+      queue:
+        enabled: true
+      performance_target: PERFORMANCE_OPTIMIZED
