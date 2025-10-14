@@ -1,0 +1,1 @@
+select * from dev_catalog.bronze.file_name_metadata_table;
