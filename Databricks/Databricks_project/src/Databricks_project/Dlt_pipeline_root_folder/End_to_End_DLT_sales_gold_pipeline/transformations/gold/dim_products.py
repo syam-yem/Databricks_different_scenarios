@@ -1,5 +1,12 @@
 import dlt
 
+@dlt.view(
+    name = "product_gold_temp_view"
+)
+def product_gold_temp_view():
+    df = spark.readStream.table("dev_catalog.silver.products_silver")
+    return df     
+
 dlt.create_streaming_table(
     name ="dev_catalog.gold.dim_product"
 )
@@ -7,7 +14,7 @@ dlt.create_streaming_table(
 
 dlt.create_auto_cdc_flow(
     target = "dim_product",
-    source = "dev_catalog.silver.product_view_trns",
+    source = "product_gold_temp_view",
     keys = ["product_id"],
     sequence_by="last_updated",
     ignore_null_updates= False,

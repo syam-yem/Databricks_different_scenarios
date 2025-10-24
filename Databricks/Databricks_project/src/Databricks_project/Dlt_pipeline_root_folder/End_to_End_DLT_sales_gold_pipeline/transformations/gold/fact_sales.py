@@ -1,5 +1,10 @@
 import dlt
 
+@dlt.view()
+def fact_sales_gold_temp_view():
+    df = spark.readStream.table("dev_catalog.silver.sales_silver")
+    return df
+
 dlt.create_streaming_table(
     name ="dev_catalog.gold.fact_sales"
 )
@@ -7,7 +12,7 @@ dlt.create_streaming_table(
 
 dlt.create_auto_cdc_flow(
     target = "fact_sales",
-    source = "dev_catalog.silver.sales_view_trns",
+    source = "fact_sales_gold_temp_view",
     keys = ["sales_id"],
     sequence_by="sale_timestamp",
     ignore_null_updates= False,

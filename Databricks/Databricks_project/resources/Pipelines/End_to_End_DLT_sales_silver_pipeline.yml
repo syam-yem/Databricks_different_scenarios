@@ -1,0 +1,14 @@
+id: 50497c7d-9d1c-4ed2-8a01-e825ea3f9582
+pipeline_type: WORKSPACE
+name: End_to_End_DLT_sales_silver_pipeline
+libraries:
+  - glob:
+      include: /Workspace/Users/syammangat2001@gmail.com/Databricks_different_scenarios/Databricks/Databricks_project/src/Databricks_project/Dlt_pipeline_root_folder/End_to_End_DLT_sales_silver_pipeline/transformations/**
+schema: silver
+continuous: false
+development: false
+photon: true
+channel: CURRENT
+catalog: dev_catalog
+serverless: true
+root_path: /Workspace/Users/syammangat2001@gmail.com/Databricks_different_scenarios/Databricks/Databricks_project/src/Databricks_project/Dlt_pipeline_root_folder/End_to_End_DLT_sales_silver_pipeline

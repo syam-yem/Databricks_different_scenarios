@@ -1,0 +1,14 @@
+id: 80564446-65c4-4231-950c-c4e6e10a4d5e
+pipeline_type: WORKSPACE
+name: End_to_End_DLT_sales_gold_pipeline
+libraries:
+  - glob:
+      include: ../../src/Databricks_project/Dlt_pipeline_root_folder/End_to_End_DLT_sales_gold_pipeline/transformations/**
+schema: gold
+continuous: false
+development: false
+photon: true
+channel: CURRENT
+catalog: dev_catalog
+serverless: true
+root_path: ../../src/Databricks_project/Dlt_pipeline_root_folder/End_to_End_DLT_sales_gold_pipeline

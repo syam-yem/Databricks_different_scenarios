@@ -1,0 +1,24 @@
+resources:
+  jobs:
+    Sales_data_job:
+      name: Sales_data_job
+      tasks:
+        - task_key: Bronze_task
+          pipeline_task:
+            pipeline_id: e96770ff-ca5f-41f5-b04c-26922d7da615
+            full_refresh: true
+        - task_key: silver_task
+          depends_on:
+            - task_key: Bronze_task
+          pipeline_task:
+            pipeline_id: 50497c7d-9d1c-4ed2-8a01-e825ea3f9582
+            full_refresh: true
+        - task_key: gold_task
+          depends_on:
+            - task_key: silver_task
+          pipeline_task:
+            pipeline_id: 80564446-65c4-4231-950c-c4e6e10a4d5e
+            full_refresh: true
+      queue:
+        enabled: true
+      performance_target: PERFORMANCE_OPTIMIZED

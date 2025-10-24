@@ -1,0 +1,14 @@
+id: e96770ff-ca5f-41f5-b04c-26922d7da615
+pipeline_type: WORKSPACE
+name: End_to_End_DLT_sales_bronze_piepline
+libraries:
+  - glob:
+      include: ../../src/Databricks_project/Dlt_pipeline_root_folder/End_to_End_DLT_sales_bronze_piepline/transformations/**
+schema: bronze
+continuous: false
+development: false
+photon: true
+channel: CURRENT
+catalog: dev_catalog
+serverless: true
+root_path: ../../src/Databricks_project/Dlt_pipeline_root_folder/End_to_End_DLT_sales_bronze_piepline

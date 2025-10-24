@@ -1,13 +1,20 @@
 import dlt
 
+
+@dlt.view()
+def customer_gold_temp_view():
+    df = spark.readStream.table("dev_catalog.silver.customers_silver")
+    return df 
+
+
 dlt.create_streaming_table(
-    name ="dev_catalog.gold.dim_customer"
+    name ="dim_customer"
 )
 ##auto_cdc_flow
 
 dlt.create_auto_cdc_flow(
     target = "dim_customer",
-    source = "dev_catalog.silver.customers_view_trns",
+    source = "customer_gold_temp_view",
     keys = ["customer_id"],
     sequence_by="last_updated",
     ignore_null_updates= False,
